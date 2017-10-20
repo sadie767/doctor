@@ -1,0 +1,18 @@
+body {
+  background-image: url("https://img.aws.la-croix.com/2011/05/27/619568/dagliorti-aa2715408938968144366_2_730_941.jpg");
+}
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+.jumbotron {
+  color: lightblue;
+}
+
+button {
+  text-align: right;
+}
