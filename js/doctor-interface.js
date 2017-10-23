@@ -7,7 +7,8 @@ let apiKey = require('./../.env').apiKey;
       let doctor = $("#doctor").val();
       $("#doctor").val("");
       console.log(doctor);
-      let promise = doctorFront.search(apiKey);
+      let query = "name=" + doctor;
+      let promise = doctorFront.search(apiKey, query);
       doctorFront.callName(doctor, promise);
       });
     });
@@ -18,6 +19,7 @@ let apiKey = require('./../.env').apiKey;
         let mallady = $("#mallady").val();
         $("#mallady").val("");
         console.log(mallady);
+        let query = "query=" + mallady
         let promise = malladyFront.search(apiKey);
         malladyFront.callApi(mallady, promise);
         });

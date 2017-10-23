@@ -9,8 +9,8 @@ export class Find {
   search(query) {
       return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      let url = `https://api.betterdoctor.com/2016-03-01/doctors?location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=cbe5f7b04b5bb714d1411d4a9943f218&query=${query}`;
-      console.log("here1");
+      let url = `https://api.betterdoctor.com/2016-03-01/doctors?location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=${apiKey}&${query}`;
+
         request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
@@ -24,24 +24,34 @@ export class Find {
   }
 
 
-  callName(query, promise, error) {
+  callName(query, promise) {
    promise.then(function(response) {
      let body = JSON.parse(response);
      let data = body.data;
-     debugger;
-     console.log("here2");
-     data.forEach(function(nest) {
-       let doctorInfo = nest['doctorInfo'];
-       let doctorName = doctorInfo.first_name + ' ' + profile.last_name;
-       console.log(doctorName);
-      $('#doctorInfo').append("For Help With ${`query`}, contact: " + "<li>" + doctorName + "</li>")
-     }),
+     console.log(data);
+     data.forEach(function(practice) {
+      let profile = practice.profile;
+      let name = profile.first_name + ' ' + profile.last_name;
+      console.log(name)
+      let phoneNumbers = practice.practices[0].phones;
+      let phoneNumber = phoneNumbers[0].number;
+      console.log(phoneNumber);
+      let addresses = practice.practices[0].visit_address;
+      let address = addresses.street + ' ' + addresses.city + ' ' + addresses.state + ' ' + addresses.zip;
+      console.log(address);
+      let websites = practice.practices[0].website;
+      console.log(websites);
+      let acceptsNew = practice.practices[0].accepts_new_patients;
+      console.log(acceptsNew);
+      }),
    function(error) {
       $('.showErrors').text(`There was an error processing your request: ${error.message}`);
     };
+    debugger;
   });
 
 }
+
 
 
   //  if(query === this.query) {
