@@ -27,31 +27,42 @@ export class Find {
   callName(query, promise) {
    promise.then(function(response) {
      let body = JSON.parse(response);
+
+     if (body.meta.total > 0) {
      let data = body.data;
      console.log(data);
      data.forEach(function(practice) {
       let profile = practice.profile;
       let name = profile.first_name + ' ' + profile.last_name;
-      console.log(name)
+      $("#doctorInfo").append(name);
+      // $("#malladyInfo").html(name);
+      console.log(name);
       let phoneNumbers = practice.practices[0].phones;
       let phoneNumber = phoneNumbers[0].number;
+      $("#doctorInfo").append(phoneNumber);
+      // $("#malladyInfo").html(phoneNumber);
       console.log(phoneNumber);
       let addresses = practice.practices[0].visit_address;
       let address = addresses.street + ' ' + addresses.city + ' ' + addresses.state + ' ' + addresses.zip;
+      $("#doctorInfo").append(address);
+      // $("#malladyInfo").html(address);
       console.log(address);
-      let websites = practice.practices[0].website;
-      console.log(websites);
+      let website = practice.practices[0].website;
+      $("#doctorInfo").append(website);
+      // $("#malladyInfo").html(website);
+      console.log(website);
       let acceptsNew = practice.practices[0].accepts_new_patients;
+      let info = $("#doctorInfo").append(acceptsNew);
+      // $("#malladyInfo").html(acceptsNew);
       console.log(acceptsNew);
+      debugger;
       }),
-   function(error) {
-      $('.showErrors').text(`There was an error processing your request: ${error.message}`);
-    };
-    debugger;
+      function(error) {
+        $('.showErrors').text(`There was an error processing your request: ${error.message}`);
+      };
+    }
   });
-
 }
-
 
 
   //  if(query === this.query) {

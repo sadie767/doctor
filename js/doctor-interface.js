@@ -19,8 +19,8 @@ let apiKey = require('./../.env').apiKey;
         let mallady = $("#mallady").val();
         $("#mallady").val("");
         console.log(mallady);
-        let query = "query=" + mallady
-        let promise = malladyFront.search(apiKey);
-        malladyFront.callApi(mallady, promise);
+        let query = "query=" + mallady;
+        let promise = malladyFront.search(apiKey, query);
+        malladyFront.callName(mallady, promise);
         });
       });
