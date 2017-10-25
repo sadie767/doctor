@@ -27,64 +27,36 @@ export class Find {
   callName(query, promise) {
    promise.then(function(response) {
      let body = JSON.parse(response);
-
-     if (body.meta.total > 0) {
      let data = body.data;
-     console.log(data);
      data.forEach(function(practice) {
       let profile = practice.profile;
       let name = profile.first_name + ' ' + profile.last_name;
-      $("#doctorInfo").append(name);
-      // $("#malladyInfo").html(name);
-      console.log(name);
+      $("#doctorInfo").show().append('<li>Name: ' + name + '</li><br>');
       let phoneNumbers = practice.practices[0].phones;
       let phoneNumber = phoneNumbers[0].number;
-      $("#doctorInfo").append(phoneNumber);
-      // $("#malladyInfo").html(phoneNumber);
-      console.log(phoneNumber);
+      $("#doctorInfo").show().append('<li>Phone Number: ' + phoneNumber + '</li><br>');
       let addresses = practice.practices[0].visit_address;
       let address = addresses.street + ' ' + addresses.city + ' ' + addresses.state + ' ' + addresses.zip;
-      $("#doctorInfo").append(address);
-      // $("#malladyInfo").html(address);
-      console.log(address);
+      $("#doctorInfo").show().append('<li>Address: ' + address + '</li><br>');
       let website = practice.practices[0].website;
-      $("#doctorInfo").append(website);
-      // $("#malladyInfo").html(website);
-      console.log(website);
+      $("#doctorInfo").show().append('<li>Website: ' + website + '</li><br>');
       let acceptsNew = practice.practices[0].accepts_new_patients;
-      let info = $("#doctorInfo").append(acceptsNew);
-      // $("#malladyInfo").html(acceptsNew);
-      console.log(acceptsNew);
+      let info = $("#doctorInfo").show().append('<li>Accepting New Patients? ' + acceptsNew + '</li><br><hr>');
       debugger;
       }),
       function(error) {
-        $('.showErrors').text(`There was an error processing your request: ${error.message}`);
+        $('.showErrors').show()(`There was an error processing your request: ${error.message}`);
       };
+    });
+  }
+
+  listDoctors(query, promise) {
+    let body = JSON.parse(response);
+
+    if (query === body.data.practices.profile.first_name || query === body.data.practices.profile.first_name || query === body.data.practices.profile.first_name) {
+    query.callName();
+    } else {
+      "Sorry, your query matched no doctors. Please try again."
     }
-  });
-}
-
-
-  //  if(query === this.query) {
-  //    arrays.forEach(function(query) {
-  //      $("#doctorInfo").append(query.practices[0].first_name);
-  //    });
-  //     }
-    //   else {
-    //    return "Sorry, There Are No Doctors That Match Your Criteria";
-    //  }
-
-
-
-
-//  getDoctorByName(name) {
-//    if(name===this.name){
-//      arrays.forEach(function(name){
-//        $("#doctorInfo").text(name.practices[0].name)
-//      } else {
-//        "Sorry, There Are No Doctors That Match Your Criteria"
-//      })
-//    }
-//  }
-//
+  }
 }

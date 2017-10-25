@@ -9,7 +9,7 @@ let apiKey = require('./../.env').apiKey;
       console.log(doctor);
       let query = "name=" + doctor;
       let promise = doctorFront.search(apiKey, query);
-      doctorFront.callName(doctor, promise);
+      doctorFront.listDoctors(doctor, promise);
       });
     });
 
@@ -21,6 +21,6 @@ let apiKey = require('./../.env').apiKey;
         console.log(mallady);
         let query = "query=" + mallady;
         let promise = malladyFront.search(apiKey, query);
-        malladyFront.callName(mallady, promise);
+        malladyFront.listDoctors(mallady, promise);
         });
       });

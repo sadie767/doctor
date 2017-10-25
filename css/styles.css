@@ -19,3 +19,12 @@ h3 {
 button {
   text-align: right;
 }
+
+.jumbotron {
+  color: inherit;
+  background-color: lightblue;
+}
+
+#list {
+  text-align: left;
+}
