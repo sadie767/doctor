@@ -50,6 +50,7 @@ export class Find {
           $('.showErrors')(`There was an error processing your request: ${error.message}`);
         };
       } else {
+        $("#doctorInfo").empty();
         $("#doctorInfo").append("Your Query Returned No Results, Try Again!");
       }
     });
