@@ -44,7 +44,6 @@ export class Find {
         $("#doctorInfo").append('<li>Website: ' + website + '</li><br>');
         let acceptsNew = practice.practices[0].accepts_new_patients;
         $("#doctorInfo").append('<li>Accepting New Patients? ' + acceptsNew + '</li><br><hr>');
-        debugger;
         }),
         function(error) {
           $('.showErrors')(`There was an error processing your request: ${error.message}`);
